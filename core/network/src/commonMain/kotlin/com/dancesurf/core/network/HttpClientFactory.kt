@@ -1,6 +1,6 @@
 package com.dancesurf.core.network
 
-import io.github.aakira.napier.Napier
+import com.dancesurf.logger.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.plugins.HttpTimeout
@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.serialization.json.Json
 
-private const val HTTP_CLIENT_LOG_TAG = "HttpClient"
+private const val LOG_TAG = "HttpClient"
 private const val DEFAULT_TIMEOUT_MS = 30000L
 
 /**
@@ -57,7 +57,7 @@ private fun HttpClientConfig<*>.logging(loggingParams: HttpClientLoggerParams) {
         level = loggingParams.level
         logger = object : Logger {
             override fun log(message: String) {
-                Napier.i(tag = HTTP_CLIENT_LOG_TAG) { message }
+                Log.d(LOG_TAG, message)
             }
         }
     }
