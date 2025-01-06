@@ -15,6 +15,7 @@ android {
         versionName = "1.0"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     packaging {
@@ -38,6 +39,8 @@ android {
 
 dependencies {
     implementation(projects.shared)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
