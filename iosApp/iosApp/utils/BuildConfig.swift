@@ -1,13 +1,6 @@
-//
-//  BuildConfig.swift
-//  iosApp
-//
-//  Created by DenisLatushko on 06/01/2025.
-//  Copyright © 2025 orgName. All rights reserved.
-//
-
 import Foundation
 
+/// A build info class
 class BuildConfig {
     static func isDebug() -> Bool {
         var flag = false
