@@ -2,8 +2,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
@@ -23,26 +23,23 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "network"
             isStatic = true
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-            api(libs.koin.core)
-            implementation(projects.core.network)
-            implementation(libs.kotlin.coroutines.core)
-            implementation(libs.koin.compose)
-            implementation(libs.koin.compose.viewmodel)
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.napier)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-            implementation(libs.koin.test)
         }
         androidMain.dependencies {
-            implementation(libs.koin.android)
             implementation(libs.ktor.client.okhttp)
         }
         iosMain.dependencies {
@@ -52,7 +49,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.dancesurf"
+    namespace = "com.dancesurf.core.network"
     compileSdk = 34
     defaultConfig {
         minSdk = 26

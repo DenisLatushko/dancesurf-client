@@ -17,3 +17,5 @@ dependencyResolutionManagement {
 rootProject.name = "DanceSurf"
 include(":androidApp")
 include(":shared")
+include(":core")
+include(":core:network")
