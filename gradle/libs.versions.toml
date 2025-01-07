@@ -16,6 +16,7 @@ espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
 build-gradle-kmp = "1.0.0"
+build-gradle-androidApp = "1.0.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -58,6 +59,7 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 build-gradle-kmp = { id = "kmp-build-gradle-plugin", version.ref = "build-gradle-kmp" }
+build-gradle-androidApp = { id = "android-app-build-gradle-plugin", version.ref = "build-gradle-androidApp" }
 
 
 

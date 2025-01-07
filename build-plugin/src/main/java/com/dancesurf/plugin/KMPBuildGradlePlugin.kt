@@ -12,6 +12,11 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
+/**
+ * Set up common settings to Kotlin Multiplatform gradle modules
+ *
+ * !!!***  Must be applied to KMP modules only ***!!!
+ */
 class KMPBuildGradlePlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
