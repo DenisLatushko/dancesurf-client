@@ -36,10 +36,17 @@ internal val Project.androidAppConfig: (BaseAppModuleExtension) -> Unit
             buildTypes {
                 debug {
                     isMinifyEnabled = false
+                    isDebuggable = true
+                    isJniDebuggable = true
+                    isDefault = true
                 }
 
                 release {
                     isMinifyEnabled = true
+                    proguardFiles(
+                        getDefaultProguardFile("proguard-android-optimize.txt"),
+                        "proguard-rules.pro"
+                    )
                 }
             }
 
