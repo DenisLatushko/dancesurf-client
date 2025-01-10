@@ -28,7 +28,7 @@ sealed class Request<T> {
         override val path: String,
         override val headers: Map<String, String> = emptyMap(),
         override val parameters: Map<String, String> = emptyMap(),
-        val body: Body<R>?
+        val body: Body<R>? = null
     ): Request<E>()
 }
 

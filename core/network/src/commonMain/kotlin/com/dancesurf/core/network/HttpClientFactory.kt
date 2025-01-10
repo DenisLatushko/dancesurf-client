@@ -31,6 +31,8 @@ internal expect val httpClientEngine: HttpClientEngineFactory<HttpClientEngineCo
  */
 fun newHttpClient(clientParams: HttpClientParams): HttpClient =
     HttpClient(clientParams.httpClientEngine).config {
+        expectSuccess = true
+
         engine()
         timeout(clientParams)
         clientParams.loggerParams?.run {

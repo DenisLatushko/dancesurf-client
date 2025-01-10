@@ -84,25 +84,25 @@ suspend inline fun <reified T> HttpClient.safeRequest(
     Result.failure(
         exception = ErrorType.HttpError(
             code = e.response.status.value,
-            cause = e.cause
+            cause = e
         )
     )
 } catch (e: IOException) {
     Result.failure(
         exception = ErrorType.NetworkError(
-            cause = e.cause
+            cause = e
         )
     )
 } catch (e: SerializationException) {
     Result.failure(
         exception = ErrorType.SerializationError(
-            cause = e.cause
+            cause = e
         )
     )
 } catch (e: Exception) {
     Result.failure(
         exception = ErrorType.GenericError(
-            cause = e.cause
+            cause = e
         )
     )
 }
