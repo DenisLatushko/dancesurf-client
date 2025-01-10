@@ -1,8 +1,8 @@
 package com.dancesurf.core.network
 
+import com.dancesurf.logger.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
-import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.plugins.HttpTimeout
@@ -63,7 +63,7 @@ private fun HttpClientConfig<*>.logging(loggingParams: HttpClientLoggerParams) {
         level = loggingParams.level
         logger = object : Logger {
             override fun log(message: String) {
-//                Log.d(LOG_TAG, message)
+                Log.d(LOG_TAG, message)
             }
         }
     }

@@ -13,11 +13,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.utils)
-            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-            implementation(libs.koin.test)
         }
     }
 }

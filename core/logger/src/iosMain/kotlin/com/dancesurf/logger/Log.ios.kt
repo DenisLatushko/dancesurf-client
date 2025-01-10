@@ -1,7 +1,5 @@
 package com.dancesurf.logger
 
-import com.dancesurf.utils.BuildConfig
-import org.koin.core.component.KoinComponent
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter
 
@@ -12,11 +10,7 @@ private fun NSDate.format(
     formatter: NSDateFormatter
 ): String = formatter.stringFromDate(this)
 
-actual object Log : KoinComponent {
-
-    private val canLog: Boolean by lazy {
-        getKoin().get<BuildConfig>().isDebug
-    }
+actual object Log {
 
     private val dateFormatter by lazy {
         NSDateFormatter().apply {
@@ -41,9 +35,7 @@ actual object Log : KoinComponent {
     }
 
     private fun log(tag: String, message: String, level: LogLevel) {
-        if (canLog) {
-            println(buildMessage(tag, message, level))
-        }
+        println(buildMessage(tag, message, level))
     }
 
     private fun buildMessage(tag: String, message: String, level: LogLevel): String =

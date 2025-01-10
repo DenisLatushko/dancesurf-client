@@ -4,13 +4,13 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.config
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
-import io.ktor.client.engine.mock.respondBadRequest
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.RedirectResponseException
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpHeaders.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.HttpStatusCode.Companion.allStatusCodes
 import io.ktor.http.headersOf
@@ -28,9 +28,7 @@ private const val URL_PATH = "/test"
 class HttpClientFactoryTest {
 
     private val testResponseData by lazy { TestResponseData(ip = "127.0.0.1") }
-    private val responseHeaders by lazy {
-        mapOf(HttpHeaders.ContentType to "application/json")
-    }
+    private val responseHeaders by lazy { mapOf(ContentType to "application/json") }
 
     @Test
     fun `given success get response when call client then data returned`() = runTest {
