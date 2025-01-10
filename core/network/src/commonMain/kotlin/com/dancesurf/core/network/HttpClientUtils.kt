@@ -8,9 +8,6 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.request
 import io.ktor.client.request.setBody
-import io.ktor.http.HttpMethod.Companion.Get
-import io.ktor.http.HttpMethod.Companion.Post
-import io.ktor.http.contentType
 import io.ktor.http.headers
 import io.ktor.http.parameters
 import io.ktor.http.path

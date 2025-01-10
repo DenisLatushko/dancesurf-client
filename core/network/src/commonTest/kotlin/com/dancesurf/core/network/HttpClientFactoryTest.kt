@@ -61,9 +61,9 @@ class HttpClientFactoryTest {
     private suspend fun assertSuccessResponse(
         request: suspend (HttpClient) -> Result<TestResponseData>
     ) {
-        val headers = headersOf(HttpHeaders.ContentType, "application/json")
+        val headers = headersOf(ContentType, "application/json")
 
-        _2xxStatusCodeSuccessList.forEach { code ->
+        statusCode2xxList.forEach { code ->
             val client = getHttpClient(
                 responseData = JSON_RESPONSE_SUCCESS,
                 status = code,
@@ -80,7 +80,7 @@ class HttpClientFactoryTest {
     @Test
     fun `given error get response 3xx when call client then error returned`() = runTest {
         assertGetErrorResponse(
-            statusList = _3xxStatusCodeSuccessList,
+            statusList = statusCode3xxList,
             exceptionType = RedirectResponseException::class
         )
     }
@@ -88,7 +88,7 @@ class HttpClientFactoryTest {
     @Test
     fun `given error post response 3xx when call client then error returned`() = runTest {
         assertPostErrorResponse(
-            statusList = _3xxStatusCodeSuccessList,
+            statusList = statusCode3xxList,
             exceptionType = RedirectResponseException::class
         )
     }
@@ -96,7 +96,7 @@ class HttpClientFactoryTest {
     @Test
     fun `given error get response 4xx when call client then error returned`() = runTest {
         assertGetErrorResponse(
-            statusList = _4xxStatusCodeSuccessList,
+            statusList = statusCode4xxList,
             exceptionType = ClientRequestException::class
         )
     }
@@ -104,7 +104,7 @@ class HttpClientFactoryTest {
     @Test
     fun `given error post response 4xx when call client then error returned`() = runTest {
         assertPostErrorResponse(
-            statusList = _4xxStatusCodeSuccessList,
+            statusList = statusCode4xxList,
             exceptionType = ClientRequestException::class
         )
     }
@@ -112,7 +112,7 @@ class HttpClientFactoryTest {
     @Test
     fun `given error get response 5xx when call client then error returned`() = runTest {
         assertGetErrorResponse(
-            statusList = _5xxStatusCodeSuccessList,
+            statusList = statusCode5xxList,
             exceptionType = ServerResponseException::class
         )
     }
@@ -120,7 +120,7 @@ class HttpClientFactoryTest {
     @Test
     fun `given error post response 5xx when call client then error returned`() = runTest {
         assertPostErrorResponse(
-            statusList = _5xxStatusCodeSuccessList,
+            statusList = statusCode5xxList,
             exceptionType = ServerResponseException::class
         )
     }
@@ -168,7 +168,7 @@ class HttpClientFactoryTest {
         exceptionType: KClass<T>,
         request: suspend (HttpClient) -> Result<TestResponseData>,
         headers: Headers = headersOf(
-            Pair(HttpHeaders.ContentType, listOf("text/html")),
+            Pair(ContentType, listOf("text/html")),
             Pair(HttpHeaders.Location, listOf(""))
         )
     ) {
@@ -212,10 +212,10 @@ class HttpClientFactoryTest {
     }
 
     private companion object {
-        val _2xxStatusCodeSuccessList = allStatusCodes.filter { it.value / 100 == 2 }
-        val _3xxStatusCodeSuccessList = allStatusCodes.filter { it.value / 100 == 3 }
-        val _4xxStatusCodeSuccessList = allStatusCodes.filter { it.value / 100 == 4 }
-        val _5xxStatusCodeSuccessList = allStatusCodes.filter { it.value / 100 == 5 }
+        val statusCode2xxList = allStatusCodes.filter { it.value / 100 == 2 }
+        val statusCode3xxList = allStatusCodes.filter { it.value / 100 == 3 }
+        val statusCode4xxList = allStatusCodes.filter { it.value / 100 == 4 }
+        val statusCode5xxList = allStatusCodes.filter { it.value / 100 == 5 }
     }
 }
 

@@ -1,9 +1,7 @@
 package com.dancesurf.core.network
 
-import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.util.reflect.TypeInfo
-import kotlinx.serialization.Serializable
 
 /**
  * A HTTP request types
