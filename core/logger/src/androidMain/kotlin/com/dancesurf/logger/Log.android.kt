@@ -1,22 +1,34 @@
 package com.dancesurf.logger
 
-import android.util.Log
+typealias AndroidLog = android.util.Log
 
-actual object Log {
+actual class Log(private val isLoggable: Boolean) {
 
     actual fun d(tag: String, message: String) {
-        Log.d(tag, message)
+        if (isLoggable) {
+            AndroidLog.d(tag, message)
+        }
     }
 
     actual fun e(tag: String, message: String, throwable: Throwable?) {
-        Log.e(tag, message, throwable)
+        if (isLoggable) {
+            AndroidLog.e(tag, message, throwable)
+        }
     }
 
     actual fun i(tag: String, message: String) {
-        Log.i(tag, message)
+        if (isLoggable) {
+            AndroidLog.i(tag, message)
+        }
     }
 
     actual fun w(tag: String, message: String) {
-        Log.w(tag, message)
+        if (isLoggable) {
+            AndroidLog.w(tag, message)
+        }
+    }
+
+    actual companion object {
+        actual fun get(isLoggable: Boolean): Log  = Log(isLoggable)
     }
 }

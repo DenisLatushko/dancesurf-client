@@ -10,7 +10,7 @@ private fun NSDate.format(
     formatter: NSDateFormatter
 ): String = formatter.stringFromDate(this)
 
-actual object Log {
+actual class Log(private val isLoggable: Boolean) {
 
     private val dateFormatter by lazy {
         NSDateFormatter().apply {
@@ -35,11 +35,17 @@ actual object Log {
     }
 
     private fun log(tag: String, message: String, level: LogLevel) {
-        println(buildMessage(tag, message, level))
+        if (isLoggable) {
+            println(buildMessage(tag, message, level))
+        }
     }
 
     private fun buildMessage(tag: String, message: String, level: LogLevel): String =
         "[${NSDate().format(dateFormatter)}] - ${level.value} - $tag: $message"
+
+    actual companion object {
+        actual fun get(isLoggable: Boolean): Log  = Log(isLoggable)
+    }
 }
 
 
