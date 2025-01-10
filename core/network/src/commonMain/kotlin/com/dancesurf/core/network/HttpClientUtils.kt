@@ -26,31 +26,30 @@ import kotlinx.serialization.SerializationException
 suspend inline fun <reified T> HttpClient.safeGet(
     request: Request.Get<T>
 ): Result<T> = safeRequest<T> {
-    method = Get
-
-    url {
-        protocol = request.protocol
-        path(request.path)
-        headers(request.headers)
-        parameters(request.parameters)
+    get {
+        url {
+            protocol = request.protocol
+            path(request.path)
+            headers(request.headers)
+            parameters(request.parameters)
+        }
     }
 }
 
 suspend inline fun <reified T, reified E> HttpClient.safePost(
     request: Request.Post<T, E>
 ): Result<T> = safeRequest<T> {
-    method = Post
+    post {
+        url {
+            protocol = request.protocol
+            path(request.path)
+            headers(request.headers)
+            parameters(request.parameters)
+        }
 
-    url {
-        protocol = request.protocol
-        path(request.path)
-        headers(request.headers)
-        parameters(request.parameters)
-    }
-
-    request.body?.run {
-        contentType(type)
-        setBody(body)
+        request.body?.run {
+            setBody(body, type)
+        }
     }
 }
 

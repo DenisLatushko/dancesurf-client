@@ -3,6 +3,7 @@ agp = "8.7.3"
 kotlin = "2.0.20"
 kotlin-serialization = "1.9.10"
 kotlin-coroutines = "1.9.0"
+kotlin-coroutines-test = "1.10.1"
 koin = "4.0.0"
 ktor = "3.0.3"
 compose = "1.7.3"
@@ -17,9 +18,11 @@ appcompat = "1.7.0"
 material = "1.12.0"
 build-gradle-kmp = "1.0.0"
 build-gradle-androidApp = "1.0.0"
+junitJupiter = "5.8.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines-test" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -37,6 +40,7 @@ ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 android-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }

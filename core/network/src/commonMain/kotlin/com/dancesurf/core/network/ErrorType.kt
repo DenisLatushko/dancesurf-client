@@ -23,10 +23,10 @@ sealed class ErrorType(
      * @property code http status code
      * @param cause a [Throwable] object which is a cause of an issue
      */
-    class HttpError(
+    data class HttpError(
         val code: Int,
-        message: String? = null,
-        cause: Throwable? = null
+        override val message: String? = null,
+        override val cause: Throwable? = null
     ): ErrorType(message = message, cause = cause)
 
     /**

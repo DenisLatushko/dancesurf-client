@@ -1,8 +1,10 @@
 package com.dancesurf.core.network
 
-import com.dancesurf.logger.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.engine.HttpClientEngineConfig
+import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
@@ -22,16 +24,18 @@ private const val DEFAULT_TIMEOUT_MS = 30000L
 /**
  * An [HttpClient] provided by a platform
  */
-internal expect val httpClient: HttpClient
+internal expect val httpClientEngine: HttpClientEngineFactory<HttpClientEngineConfig>
 
 /**
  * A factory function to initialize and set up [HttpClient] to be used in future API calls
  */
 fun newHttpClient(clientParams: HttpClientParams): HttpClient =
-    httpClient.config {
+    HttpClient(clientParams.httpClientEngine).config {
         engine()
         timeout(clientParams)
-        clientParams.loggerParams?.run { logging(this) }
+        clientParams.loggerParams?.run {
+            logging(this)
+        }
         defaultRequestWithParams(clientParams)
         contentNegotiation()
     }
@@ -57,7 +61,7 @@ private fun HttpClientConfig<*>.logging(loggingParams: HttpClientLoggerParams) {
         level = loggingParams.level
         logger = object : Logger {
             override fun log(message: String) {
-                Log.d(LOG_TAG, message)
+//                Log.d(LOG_TAG, message)
             }
         }
     }
@@ -72,15 +76,18 @@ private fun HttpClientConfig<*>.timeout(clientParams: HttpClientParams) {
 
 private fun HttpClientConfig<*>.contentNegotiation() {
     install(ContentNegotiation) {
-        json(Json {
-            prettyPrint = true
-            isLenient = true
-            ignoreUnknownKeys = true
-        })
+        json(
+            Json {
+                prettyPrint = true
+                isLenient = false
+                ignoreUnknownKeys = true
+            }
+        )
     }
 }
 
 data class HttpClientParams(
+    val httpClientEngine: HttpClientEngineFactory<HttpClientEngineConfig>,
     val baseUrl: String,
     val maxRetries: Int = 0,
     val requestTimeout: Long = DEFAULT_TIMEOUT_MS,
@@ -89,15 +96,26 @@ data class HttpClientParams(
     val loggerParams: HttpClientLoggerParams? = null
 ) {
     companion object {
-        fun default(baseUrl: String) = HttpClientParams(baseUrl = baseUrl)
+        fun default(
+            baseUrl: String,
+            httpClientEngine: HttpClientEngineFactory<HttpClientEngineConfig>
+        ) = HttpClientParams(
+            httpClientEngine = httpClientEngine,
+            baseUrl = baseUrl
+        )
 
-        fun defaultDebug(baseUrl: String) = default(baseUrl = baseUrl)
-            .copy(
-                loggerParams = HttpClientLoggerParams(
-                    logger = Logger.DEFAULT,
-                    level = LogLevel.ALL
-                )
+        fun defaultDebug(
+            baseUrl: String,
+            httpClientEngine: HttpClientEngineFactory<HttpClientEngineConfig>
+        ) = default(
+            baseUrl = baseUrl,
+            httpClientEngine = httpClientEngine
+        ).copy(
+            loggerParams = HttpClientLoggerParams(
+                logger = Logger.DEFAULT,
+                level = LogLevel.ALL
             )
+        )
     }
 }
 

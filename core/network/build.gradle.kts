@@ -14,6 +14,9 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotlin.coroutines.test)
+            implementation(libs.ktor.client.mock)
+            implementation(libs.koin.test)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
