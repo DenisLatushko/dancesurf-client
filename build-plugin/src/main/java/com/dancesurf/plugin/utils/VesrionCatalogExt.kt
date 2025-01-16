@@ -22,3 +22,6 @@ internal val VersionCatalog.kotlinMultiplatformPlugin: PluginDependency
 
 internal val VersionCatalog.androidLibraryPlugin: PluginDependency
     get() = findPlugin("android.library").get().get()
+
+internal val VersionCatalog.cocoapodsPlugin: PluginDependency
+    get() = findPlugin("kotlin.cocoapods").get().get()

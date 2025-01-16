@@ -9,6 +9,10 @@ internal object JavaConfig {
 }
 
 internal object AndroidConfig {
-    const val COMPILE_SDK = 34
+    const val COMPILE_SDK = 35
     const val MIN_SDK = 26
+}
+
+internal object IosConfig {
+    const val DEPLOYMENT_TARGET = "15"
 }

@@ -28,3 +28,6 @@ internal fun Project.getNameSpace(rootPath: String): String = StringBuilder()
     .also {
         println(">>> Gradle module \"$name\" has the following namespace: $it")
     }
+
+internal val Project.moduleName: String
+    get() = path.drop(1).replace(":", "-")
