@@ -5,13 +5,9 @@ plugins {
 }
 
 kotlin {
-    compilerOptions {
-
-    }
-
     cocoapods {
         pod("GoogleMaps") {
-            version = "9.2.0"
+            version = libs.versions.pods.google.maps.utils.get()
             extraOpts += listOf("-compiler-option", "-fmodules")
         }
     }
