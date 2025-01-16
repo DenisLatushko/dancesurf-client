@@ -30,7 +30,7 @@ internal val Project.kmpConfig: (KotlinMultiplatformExtension) -> Unit
                     isStatic = true
                 }
 
-                println(">>> Base name for \"$name\" is $moduleName")
+                println(">>> Base name for platform \"${platform.name}\" is $moduleName")
             }
 
             applyDefaultHierarchyTemplate()
