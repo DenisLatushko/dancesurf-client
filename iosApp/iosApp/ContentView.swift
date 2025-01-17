@@ -2,15 +2,21 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greet()
-
 	var body: some View {
-		Text(greet)
+        ZStack {
+            ContentViewController()
+        }
 	}
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+private struct ContentViewController: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UIViewController
+
+    func makeUIViewController(context: Context) -> UIViewControllerType {
+        return AppViewControllerKt.AppViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        // no op
+    }
 }

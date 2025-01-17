@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.build.gradle.androidApp)
+    alias(libs.plugins.android.secrets.plugin)
 }
 
 android {
@@ -20,4 +21,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.kotlinx.coroutines.android)
     debugImplementation(libs.androidx.compose.ui.tooling)
+}
+
+secrets {
+    propertiesFileName = "${rootDir.path}/androidApp/secrets.properties"
 }

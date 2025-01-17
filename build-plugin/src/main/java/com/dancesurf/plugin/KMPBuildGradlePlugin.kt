@@ -5,6 +5,7 @@ import com.dancesurf.plugin.targetconfig.kmpConfig
 import com.dancesurf.plugin.targetconfig.kotlinAndroidConfig
 import com.dancesurf.plugin.utils.androidLibraryPlugin
 import com.dancesurf.plugin.utils.apply
+import com.dancesurf.plugin.utils.cocoapodsPlugin
 import com.dancesurf.plugin.utils.kotlinMultiplatformPlugin
 import com.dancesurf.plugin.utils.versionCatalog
 import org.gradle.api.Plugin
@@ -22,7 +23,8 @@ class KMPBuildGradlePlugin: Plugin<Project> {
         with(target) {
             pluginManager.apply(
                 versionCatalog.kotlinMultiplatformPlugin.pluginId,
-                versionCatalog.androidLibraryPlugin.pluginId
+                versionCatalog.androidLibraryPlugin.pluginId,
+                versionCatalog.cocoapodsPlugin.pluginId
             )
 
             extensions.configure<KotlinMultiplatformExtension>(kmpConfig)

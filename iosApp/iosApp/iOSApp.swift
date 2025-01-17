@@ -1,17 +1,18 @@
 import SwiftUI
 import shared
+import GoogleMaps
 
 @main
 struct iOSApp: App {
 
     init(){
-        DIInitializer.Companion()
-            .doInitDi(isDebug: BuildConfig.isDebug())
+        MapInitializer.initMap()
     }
 
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
+                .ignoresSafeArea()
 		}
 	}
 }
