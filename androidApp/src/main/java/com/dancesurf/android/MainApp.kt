@@ -1,6 +1,7 @@
 package com.dancesurf.android
 
 import android.app.Application
+import com.dancesurf.androidApp.BuildConfig
 import com.dancesurf.di.sharedAppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
