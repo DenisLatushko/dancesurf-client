@@ -1,4 +1,4 @@
-package com.dancesurf.logger
+package com.dancesurf.utils.log
 
 import platform.Foundation.NSDate
 import platform.Foundation.NSDateFormatter

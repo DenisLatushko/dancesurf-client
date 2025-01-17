@@ -1,4 +1,4 @@
-package com.dancesurf.logger
+package com.dancesurf.utils.log
 
 /**
  * A logger wrapper to print messages to console for debugging purposes.

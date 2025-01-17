@@ -1,4 +1,4 @@
-package com.dancesurf.logger
+package com.dancesurf.utils.log
 
 typealias AndroidLog = android.util.Log
 

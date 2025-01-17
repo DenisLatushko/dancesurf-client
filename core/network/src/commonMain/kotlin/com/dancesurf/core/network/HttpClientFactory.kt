@@ -1,6 +1,6 @@
 package com.dancesurf.core.network
 
-import com.dancesurf.logger.Log
+import com.dancesurf.utils.log.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngineConfig
