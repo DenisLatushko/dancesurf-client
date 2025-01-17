@@ -1,9 +1,9 @@
 package com.dancesurf
 
 import androidx.compose.runtime.Composable
-import com.dancesurf.map.MapContainer
-import com.dancesurf.map.location.CameraLocation
-import com.dancesurf.map.location.Location
+import com.dancesurf.ui.map.MapContainer
+import com.dancesurf.ui.map.location.CameraLocation
+import com.dancesurf.ui.map.location.Location
 import com.dancesurf.ui.theme.AppTheme
 
 @Composable

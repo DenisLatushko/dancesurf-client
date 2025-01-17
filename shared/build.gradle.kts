@@ -8,7 +8,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.utils)
-            implementation(projects.core.map)
+            implementation(projects.core.ui)
 
             api(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
