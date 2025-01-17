@@ -24,6 +24,7 @@ pods-google-maps = "9.2.0"
 pods-google-maps-utils = "6.1.0"
 secretsGradlePlugin = "2.0.1"
 kotest = "5.0.2"
+mokkery = "2.6.1"
 
 [libraries]
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -81,4 +82,5 @@ build-gradle-kmp = { id = "kmp-build-gradle-plugin", version.ref = "build-gradle
 build-gradle-androidApp = { id = "android-app-build-gradle-plugin", version.ref = "build-gradle-androidApp" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
 kotest-multiplatform = { id = "io.kotest.multiplatform", version.ref = "kotest" }
+mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
 
