@@ -16,3 +16,7 @@ internal object AndroidConfig {
 internal object IosConfig {
     const val DEPLOYMENT_TARGET = "15"
 }
+
+internal object ProjectConfig {
+    const val NAMESPACE = "com.dancesurf"
+}

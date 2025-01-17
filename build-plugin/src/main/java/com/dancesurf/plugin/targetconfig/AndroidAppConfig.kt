@@ -5,7 +5,7 @@ import com.dancesurf.plugin.AndroidConfig.COMPILE_SDK
 import com.dancesurf.plugin.AndroidConfig.MIN_SDK
 import com.dancesurf.plugin.JavaConfig.javaVersion
 import com.dancesurf.plugin.JavaConfig.jvmTarget
-import com.dancesurf.plugin.utils.getNameSpace
+import com.dancesurf.plugin.utils.nameSpace
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 internal val Project.androidAppConfig: (BaseAppModuleExtension) -> Unit
     get() = { ext ->
         ext.apply {
-            namespace = getNameSpace("${projectDir.path}/src/main/java")
+            namespace = this@androidAppConfig.nameSpace
             compileSdk = COMPILE_SDK
             defaultConfig {
                 minSdk = MIN_SDK
