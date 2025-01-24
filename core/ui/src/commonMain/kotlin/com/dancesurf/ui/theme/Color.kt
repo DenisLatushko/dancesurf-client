@@ -1,4 +1,4 @@
-package com.dancesurf.ui.resources
+package com.dancesurf.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

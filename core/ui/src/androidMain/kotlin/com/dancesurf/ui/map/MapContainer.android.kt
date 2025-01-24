@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.dancesurf.ui.map.MapSettings
 import com.dancesurf.ui.map.location.CameraLocation
 import com.dancesurf.ui.map.utils.cameraPositionDefault
 import com.dancesurf.ui.map.utils.toCameraPosition

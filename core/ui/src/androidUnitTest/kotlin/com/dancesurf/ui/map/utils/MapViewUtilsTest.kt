@@ -3,11 +3,6 @@ package com.dancesurf.ui.map.utils
 import com.dancesurf.ui.map.MapSettings
 import com.dancesurf.ui.map.location.CameraLocation
 import com.dancesurf.ui.map.location.Location
-import com.dancesurf.ui.map.utils.cameraPositionDefault
-import com.dancesurf.ui.map.utils.toCameraPosition
-import com.dancesurf.ui.map.utils.toLatLng
-import com.dancesurf.ui.map.utils.toMapProperties
-import com.dancesurf.ui.map.utils.toMapUiSettings
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.MapProperties

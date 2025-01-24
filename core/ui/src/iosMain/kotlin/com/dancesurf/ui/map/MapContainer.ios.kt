@@ -17,7 +17,6 @@ import com.dancesurf.ui.map.utils.MapViewDelegate
 import com.dancesurf.ui.map.utils.animateWithCameraUpdate
 import com.dancesurf.ui.map.utils.setCamera
 import com.dancesurf.ui.map.utils.setUpSettings
-import com.dancesurf.ui.map.MapSettings
 import kotlinx.cinterop.ExperimentalForeignApi
 
 @Composable
@@ -26,7 +25,7 @@ actual fun MapContainer(
     mapSettings: MapSettings,
     initialCameraLocation: CameraLocation?
 ) {
-    val mapView = remember { GMSMapView() }
+    val mapView = remember(mapSettings) { GMSMapView() }
     val mapDelegate = remember(mapView) { MapViewDelegate() }
     var isMapSetupCompleted by remember(mapView) { mutableStateOf(false) }
     var shouldChangeCameraPosition by remember(initialCameraLocation) { mutableStateOf(true) }

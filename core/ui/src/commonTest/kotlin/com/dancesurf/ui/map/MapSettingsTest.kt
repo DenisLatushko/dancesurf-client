@@ -1,6 +1,5 @@
 package com.dancesurf.ui.map
 
-import com.dancesurf.ui.map.MapSettings
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
