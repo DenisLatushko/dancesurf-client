@@ -62,11 +62,8 @@ private fun HttpClientConfig<*>.logging(loggingParams: HttpClientLoggerParams) {
         logger = loggingParams.logger
         level = loggingParams.level
         logger = object : Logger {
-
-            private val logger = Log.get(true)
-
             override fun log(message: String) {
-                logger.d(LOG_TAG, message)
+                Log.d(LOG_TAG, message)
             }
         }
     }
