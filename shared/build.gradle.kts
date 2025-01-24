@@ -9,13 +9,13 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.core.utils)
             implementation(projects.core.ui)
+            implementation(projects.core.system)
 
             api(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
-            implementation(libs.ktor.client.core)
 
             implementation(compose.ui)
             implementation(compose.runtime)
@@ -29,11 +29,8 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.koin.android)
-            implementation(libs.ktor.client.okhttp)
-            implementation(libs.android.maps.compose)
         }
         iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
         }
     }
 }

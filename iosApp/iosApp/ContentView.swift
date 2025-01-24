@@ -13,7 +13,9 @@ private struct ContentViewController: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIViewController
 
     func makeUIViewController(context: Context) -> UIViewControllerType {
-        return AppViewControllerKt.AppViewController()
+        return AppViewControllerKt.AppViewController(
+            isDebug: BuildConfig.isDebug()
+        )
     }
 
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

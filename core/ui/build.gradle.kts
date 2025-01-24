@@ -14,6 +14,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.core.system)
+            implementation(projects.core.utils)
             implementation(compose.ui)
             implementation(compose.material3)
             implementation(compose.foundation)
@@ -23,7 +25,7 @@ kotlin {
             implementation(libs.kotlin.test)
         }
         androidMain.dependencies {
-            implementation(libs.android.maps.compose)
+            implementation(libs.android.compose.maps)
         }
     }
 }
