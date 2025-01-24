@@ -19,6 +19,7 @@ import com.dancesurf.ui.map.utils.setCamera
 import com.dancesurf.ui.map.utils.setUpSettings
 import kotlinx.cinterop.ExperimentalForeignApi
 
+@OptIn(ExperimentalForeignApi::class)
 @Composable
 actual fun MapContainer(
     modifier: Modifier,
