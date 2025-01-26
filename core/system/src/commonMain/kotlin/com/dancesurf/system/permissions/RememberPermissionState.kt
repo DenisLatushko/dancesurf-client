@@ -14,6 +14,12 @@ expect fun rememberSinglePermissionRequester(
     onPermissionResult: (PermissionStatus) -> Unit
 ): SinglePermissionRequester
 
+/**
+ * Remember the latest [Permission] statuses and request  them it if needed.
+ *
+ * @param permissions The [Permission] list to request
+ * @param onPermissionsResult The callback to invoke when the permissions statuses changed
+ */
 @Composable
 expect fun rememberMultiplePermissionsRequester(
     vararg permissions: Permission,

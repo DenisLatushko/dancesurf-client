@@ -5,7 +5,7 @@ import com.dancesurf.system.permissions.PermissionStatus
 /**
  * A basic functionality for classes which contains request permission logic
  */
-internal interface PermissionDelegate {
+interface PermissionDelegate {
 
     val currentPermissionStatus: PermissionStatus
     var onPermissionResult: ((PermissionStatus) -> Unit)?

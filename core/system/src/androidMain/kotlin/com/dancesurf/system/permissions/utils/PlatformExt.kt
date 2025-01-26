@@ -20,6 +20,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.dancesurf.system.permissions.MultiplePermissionRequester
 import com.dancesurf.system.permissions.Permission
 import com.dancesurf.system.permissions.Permission.Notifications
+import com.dancesurf.system.permissions.PermissionStatus
 import com.dancesurf.system.permissions.SinglePermissionRequester
 
 /**
@@ -50,11 +51,17 @@ internal fun newPermissionsSettingsIntent(
     context.permissionsSettingsIntent
 }
 
-private val Context.notificationsSettingsIntent: Intent
+/**
+ * Initialize [Intent] to open notification settings
+ */
+internal val Context.notificationsSettingsIntent: Intent
     get() = Intent(ACTION_APP_NOTIFICATION_SETTINGS).apply {
         putExtra(EXTRA_APP_PACKAGE, packageName)
     }
 
+/**
+ * Initialize [Intent] to open permissions settings
+ */
 internal val Context.permissionsSettingsIntent: Intent
     get() = Intent().apply {
         action = ACTION_APPLICATION_DETAILS_SETTINGS
@@ -62,6 +69,12 @@ internal val Context.permissionsSettingsIntent: Intent
         flags = Intent.FLAG_ACTIVITY_NEW_TASK
     }
 
+/**
+ * Refresh [PermissionStatus] when the application lifecycle is triggered
+ *
+ * @param permissionRequester The [SinglePermissionRequester] to refresh only one permission
+ * @param trigger The app lifecycle [Event] to trigger the refresh
+ */
 @Composable
 internal fun AppLifecyclePermissionController(
     permissionRequester: SinglePermissionRequester,
@@ -84,6 +97,12 @@ internal fun AppLifecyclePermissionController(
     }
 }
 
+/**
+ * Refresh [PermissionStatus] when the application lifecycle is triggered
+ *
+ * @param permissionRequester The [MultiplePermissionRequester] to refresh permissions
+ * @param trigger The app lifecycle [Event] to trigger the refresh
+ */
 @Composable
 internal fun AppLifecyclePermissionController(
     permissionRequester: MultiplePermissionRequester,
