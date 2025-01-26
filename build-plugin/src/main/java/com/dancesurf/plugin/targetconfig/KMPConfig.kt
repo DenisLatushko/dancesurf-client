@@ -24,6 +24,10 @@ internal val Project.kmpConfig: (KotlinMultiplatformExtension) -> Unit
                 }
             }
 
+            sourceSets.all {
+                languageSettings.enableLanguageFeature("ExpectActualClasses")
+            }
+
             listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { platform ->
                 platform.binaries.framework {
                     baseName = moduleName
