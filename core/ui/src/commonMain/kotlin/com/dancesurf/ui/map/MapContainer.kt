@@ -17,13 +17,13 @@ import com.dancesurf.ui.map.location.CameraLocation
 expect fun MapContainer(
     modifier: Modifier = Modifier,
     mapSettings: MapSettings = MapSettings.default,
-    initialCameraLocation: CameraLocation? = null,
+    initialCameraLocation: CameraLocation,
 )
 
 @Composable
 fun MapView(
     modifier: Modifier = Modifier,
-    initialCameraLocation: CameraLocation? = null,
+    initialCameraLocation: CameraLocation,
 ) {
     var isLocationPermissionGranted by remember { mutableStateOf(false) }
     val permissions = rememberMultiplePermissionsRequester(ImpreciseLocation, PreciseLocation) { resultMap ->

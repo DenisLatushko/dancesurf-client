@@ -13,7 +13,7 @@ data class MapSettings(
     companion object {
         val default: MapSettings
             get() = MapSettings(
-                isCompassButtonEnabled = false,
+                isCompassButtonEnabled = true,
                 isMyLocationButtonEnabled = false,
                 minCameraZoom = 1.0f,
                 maxCameraZoom = 20.0f

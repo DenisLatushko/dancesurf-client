@@ -17,11 +17,17 @@ private fun getPermissionsMap(): List<Pair<String, Permission>> = mutableListOf(
     }
 }
 
+/**
+ * Map [Permission] to the platform permission [String]
+ */
 internal val Permission.platformPermission: String?
     get() = getPermissionsMap()
         .find { it.second == this }
         ?.first
 
+/**
+ * Map platform permission [String] to the [Permission]
+ */
 internal val String.applicationPermission: Permission?
     get() = getPermissionsMap()
         .find { it.first == this }

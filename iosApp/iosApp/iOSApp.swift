@@ -5,6 +5,7 @@ import shared
 struct iOSApp: App {
 
     init() {
+        DIInitializer(isDebug: BuildConfig.isDebug()).start()
         MapInitializer.initMap()
     }
 
