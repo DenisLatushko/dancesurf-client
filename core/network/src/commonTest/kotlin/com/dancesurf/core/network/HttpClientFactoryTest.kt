@@ -196,7 +196,7 @@ class HttpClientFactoryTest {
     ) = newHttpClient(
         HttpClientParams.default(
             baseUrl = BASE_URL,
-            httpClientEngine = MockEngine.config {
+            clientEngine = MockEngine.config {
                 addHandler {
                     respond(
                         content = responseData,

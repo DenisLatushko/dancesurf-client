@@ -30,7 +30,7 @@ internal expect val httpClientEngine: HttpClientEngineFactory<HttpClientEngineCo
  * A factory function to initialize and set up [HttpClient] to be used in future API calls
  */
 fun newHttpClient(clientParams: HttpClientParams): HttpClient =
-    HttpClient(clientParams.httpClientEngine).config {
+    HttpClient(clientParams.clientEngine).config {
         expectSuccess = true
 
         engine()
@@ -89,7 +89,7 @@ private fun HttpClientConfig<*>.contentNegotiation() {
 }
 
 data class HttpClientParams(
-    val httpClientEngine: HttpClientEngineFactory<HttpClientEngineConfig>,
+    val clientEngine: HttpClientEngineFactory<HttpClientEngineConfig>,
     val baseUrl: String,
     val maxRetries: Int = 0,
     val requestTimeout: Long = DEFAULT_TIMEOUT_MS,
@@ -100,18 +100,18 @@ data class HttpClientParams(
     companion object {
         fun default(
             baseUrl: String,
-            httpClientEngine: HttpClientEngineFactory<HttpClientEngineConfig>
+            clientEngine: HttpClientEngineFactory<HttpClientEngineConfig> = httpClientEngine
         ) = HttpClientParams(
-            httpClientEngine = httpClientEngine,
+            clientEngine = clientEngine,
             baseUrl = baseUrl
         )
 
         fun defaultDebug(
             baseUrl: String,
-            httpClientEngine: HttpClientEngineFactory<HttpClientEngineConfig>
+            clientEngine: HttpClientEngineFactory<HttpClientEngineConfig> = httpClientEngine
         ) = default(
             baseUrl = baseUrl,
-            httpClientEngine = httpClientEngine
+            clientEngine = httpClientEngine
         ).copy(
             loggerParams = HttpClientLoggerParams(
                 logger = Logger.DEFAULT,
