@@ -3,6 +3,8 @@ package com.dancesurf.ui.map.utils
 import com.dancesurf.ui.map.MapSettings
 import com.dancesurf.ui.map.location.CameraLocation
 import com.dancesurf.ui.map.location.Location
+import com.google.android.gms.maps.CameraUpdate
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.MapProperties
@@ -28,5 +30,5 @@ internal fun Location.toLatLng(): LatLng = LatLng(lat, lng)
 internal fun CameraLocation.toCameraPosition(): CameraPosition =
     CameraPosition.fromLatLngZoom(location.toLatLng(), zoom)
 
-internal val cameraPositionDefault: CameraPosition
-    get() = CameraPosition.fromLatLngZoom(LatLng(.0, .0), 12f)
+internal fun CameraLocation.toCameraUpdate(): CameraUpdate =
+    CameraUpdateFactory.newCameraPosition(toCameraPosition())

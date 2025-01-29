@@ -24,7 +24,7 @@ import kotlinx.cinterop.ExperimentalForeignApi
 actual fun MapContainer(
     modifier: Modifier,
     mapSettings: MapSettings,
-    initialCameraLocation: CameraLocation?
+    initialCameraLocation: CameraLocation
 ) {
     val mapView = remember(mapSettings) { GMSMapView() }
     val mapDelegate = remember(mapView) { MapViewDelegate() }
@@ -38,7 +38,7 @@ actual fun MapContainer(
             update = { view ->
                 with(view) {
                     if (!isMapSetupCompleted) {
-                        initialCameraLocation?.run { animateWithCameraUpdate(location) }
+                        initialCameraLocation.run { animateWithCameraUpdate(location) }
                         setUpSettings(mapSettings)
                         isMapSetupCompleted = true
                     }

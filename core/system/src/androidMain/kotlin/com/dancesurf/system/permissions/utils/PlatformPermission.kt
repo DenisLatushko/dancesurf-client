@@ -24,3 +24,11 @@ internal val Permission.platformPermission: String?
     get() = getPermissionsMap()
         .find { it.second == this }
         ?.first
+
+/**
+ * Map platform permission [String] to the [Permission]
+ */
+internal val String.applicationPermission: Permission?
+    get() = getPermissionsMap()
+        .find { it.first == this }
+        ?.second
