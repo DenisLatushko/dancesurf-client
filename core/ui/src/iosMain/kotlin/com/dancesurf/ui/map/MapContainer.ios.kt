@@ -9,46 +9,46 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.viewinterop.UIKitInteropInteractionMode
+import androidx.compose.ui.viewinterop.UIKitInteropProperties
 import androidx.compose.ui.viewinterop.UIKitView
 import cocoapods.GoogleMaps.GMSMapView
 import com.dancesurf.ui.map.location.CameraLocation
 import com.dancesurf.ui.map.utils.MapViewDelegate
-import com.dancesurf.ui.map.utils.animateWithCameraUpdate
 import com.dancesurf.ui.map.utils.setCamera
 import com.dancesurf.ui.map.utils.setUpSettings
 import kotlinx.cinterop.ExperimentalForeignApi
 
-@OptIn(ExperimentalForeignApi::class)
+@OptIn(ExperimentalForeignApi::class, ExperimentalComposeUiApi::class)
 @Composable
 actual fun MapContainer(
     modifier: Modifier,
     mapSettings: MapSettings,
-    initialCameraLocation: CameraLocation
+    cameraLocation: CameraLocation
 ) {
-    val mapView = remember(mapSettings) { GMSMapView() }
-    val mapDelegate = remember(mapView) { MapViewDelegate() }
-    var isMapSetupCompleted by remember(mapView) { mutableStateOf(false) }
-    var shouldChangeCameraPosition by remember(initialCameraLocation) { mutableStateOf(true) }
+    val mapDelegate = remember { MapViewDelegate() }
+    var isCameraLocationChanged by remember(cameraLocation) { mutableStateOf(true) }
 
     Box(modifier = modifier) {
         UIKitView(
             modifier = Modifier.fillMaxSize(),
-            factory = { mapView.apply { delegate = mapDelegate } },
-            update = { view ->
-                with(view) {
-                    if (!isMapSetupCompleted) {
-                        initialCameraLocation.run { animateWithCameraUpdate(location) }
-                        setUpSettings(mapSettings)
-                        isMapSetupCompleted = true
-                    }
-
-                    if (shouldChangeCameraPosition) {
-                        shouldChangeCameraPosition = false
-                        initialCameraLocation?.run { setCamera(this) }
-                    }
+            properties = UIKitInteropProperties(UIKitInteropInteractionMode.NonCooperative),
+            factory = {
+                GMSMapView().apply {
+                    delegate = mapDelegate
+                    setUpSettings(mapSettings)
+                    setCamera(cameraLocation)
                 }
-            }
+            },
+            update = { map ->
+                if (isCameraLocationChanged) {
+                    map.setCamera(cameraLocation)
+                    isCameraLocationChanged = false
+                }
+            },
+            onRelease = { map -> map.removeFromSuperview() }
         )
     }
 }

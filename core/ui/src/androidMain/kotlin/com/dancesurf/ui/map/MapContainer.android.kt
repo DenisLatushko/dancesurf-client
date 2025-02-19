@@ -18,16 +18,16 @@ import com.google.maps.android.compose.rememberCameraPositionState
 actual fun MapContainer(
     modifier: Modifier,
     mapSettings: MapSettings,
-    initialCameraLocation: CameraLocation
+    cameraLocation: CameraLocation
 ) {
     val cameraPositionState = rememberCameraPositionState {
-        position = initialCameraLocation.toCameraPosition()
+        position = cameraLocation.toCameraPosition()
     }
 
-    LaunchedEffect(initialCameraLocation) {
+    LaunchedEffect(cameraLocation) {
         cameraPositionState.animate(
-            update = initialCameraLocation.toCameraUpdate(),
-            durationMs = initialCameraLocation.durationMillis
+            update = cameraLocation.toCameraUpdate(),
+            durationMs = cameraLocation.durationMillis
         )
     }
 

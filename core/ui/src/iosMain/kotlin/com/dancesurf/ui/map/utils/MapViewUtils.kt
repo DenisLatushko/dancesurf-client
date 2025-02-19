@@ -24,6 +24,7 @@ internal fun GMSMapView.setUpSettings(
         setScrollGestures(mapSettings.isScrollGesturesEnabled)
         setZoomGestures(mapSettings.isZoomGesturesEnabled)
         setCompassButton(mapSettings.isCompassButtonEnabled)
+        consumesGesturesInView = true
         myLocationButton = mapSettings.isMyLocationButtonEnabled
     }
 }
