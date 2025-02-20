@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.build.gradle.kmp)
     alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrains.compose.compiler)
 }
 
 kotlin {

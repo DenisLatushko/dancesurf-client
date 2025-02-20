@@ -15,7 +15,7 @@ internal val VersionCatalog.kotlinAndroidPlugin: PluginDependency
     get() = findPlugin("kotlin.android").get().get()
 
 internal val VersionCatalog.composeCompilerPlugin: PluginDependency
-    get() = findPlugin("compose.compiler").get().get()
+    get() = findPlugin("jetbrains.compose.compiler").get().get()
 
 internal val VersionCatalog.kotlinMultiplatformPlugin: PluginDependency
     get() = findPlugin("kotlin.multiplatform").get().get()
