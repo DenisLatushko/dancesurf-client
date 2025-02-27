@@ -16,6 +16,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+            implementation(compose.components.resources)
 
             implementation(compose.ui)
             implementation(compose.runtime)
@@ -34,4 +35,10 @@ kotlin {
         iosMain.dependencies {
         }
     }
+}
+
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "com.dancesurf.shared.resources"
+    generateResClass = auto
 }

@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.dancesurf.shared.resources.Res
 import com.dancesurf.system.location.SystemLocationManager
 import com.dancesurf.system.location.fetchLastKnownLocation
 import com.dancesurf.system.permissions.Permission.ImpreciseLocation
@@ -32,6 +33,7 @@ import com.dancesurf.ui.map.location.CameraLocation
 import com.dancesurf.ui.map.location.Location
 import com.dancesurf.ui.theme.AppTheme
 import com.dancesurf.utils.log.Log
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.koin.compose.koinInject
 
 @Composable
@@ -49,44 +51,40 @@ fun AppEntryPoint(isDebug: Boolean) {
 @Composable
 expect fun InitApplicationEntryPoint(content: @Composable () -> Unit)
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
-internal fun AppContent() {
+private fun AppContent() {
     val locationService = koinInject<SystemLocationManager>()
     var isLocationPermissionGranted by remember { mutableStateOf(false) }
+    var mapStyleRawJson by remember { mutableStateOf("") }
+    var cameraLocation by remember { mutableStateOf(CameraLocation.default) }
     val permissions = rememberMultiplePermissionsRequester(ImpreciseLocation, PreciseLocation) { resultMap ->
         isLocationPermissionGranted = resultMap.values.any { it.isGranted() }
     }
-    var cameraLocation by remember {
-        mutableStateOf(
-            CameraLocation.default.copy(
-                location = Location(52.228662, 21.004117)
-            )
-        )
+
+    LaunchedEffect(Unit) {
+        mapStyleRawJson = Res.readBytes("files/map_style.json").decodeToString()
     }
 
     LaunchedEffect(permissions.deniedRequesters.size) {
         isLocationPermissionGranted = permissions.deniedRequesters.isEmpty()
-        if (!isLocationPermissionGranted) {
-            permissions.requestPermissions()
-        }
+        if (!isLocationPermissionGranted) permissions.requestPermissions()
     }
 
     LaunchedEffect(isLocationPermissionGranted) {
         if (isLocationPermissionGranted) {
-            val coords = locationService.fetchLastKnownLocation()
-            cameraLocation = cameraLocation.copy(
-                location = Location(coords.lat, coords.lng)
-            )
+            cameraLocation = locationService.fetchLastKnownLocation()
+                .let { cameraLocation.copy(Location(it.lat, it.lng)) }
         }
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-
         MapContainer(
             modifier = Modifier.fillMaxSize(),
             cameraLocation = cameraLocation,
             mapSettings = MapSettings.default.copy(
-                isMyLocationEnabled = true
+                isMyLocationEnabled = true,
+                mapStyle = mapStyleRawJson
             )
         )
 

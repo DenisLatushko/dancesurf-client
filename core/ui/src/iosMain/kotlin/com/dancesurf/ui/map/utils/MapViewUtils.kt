@@ -2,6 +2,7 @@ package com.dancesurf.ui.map.utils
 
 import cocoapods.GoogleMaps.GMSCameraPosition
 import cocoapods.GoogleMaps.GMSCameraUpdate
+import cocoapods.GoogleMaps.GMSMapStyle
 import cocoapods.GoogleMaps.GMSMapView
 import cocoapods.GoogleMaps.animateWithCameraUpdate
 import com.dancesurf.ui.map.MapSettings
@@ -26,6 +27,7 @@ internal fun GMSMapView.setUpSettings(
         setCompassButton(mapSettings.isCompassButtonEnabled)
         consumesGesturesInView = true
         myLocationButton = mapSettings.isMyLocationButtonEnabled
+        setMapStyle(GMSMapStyle.styleWithJSONString(mapSettings.mapStyle, null))
     }
 }
 

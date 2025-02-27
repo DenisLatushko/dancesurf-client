@@ -7,6 +7,7 @@ import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 
@@ -22,7 +23,8 @@ internal fun MapSettings.toMapUiSettings(): MapUiSettings = MapUiSettings(
 internal fun MapSettings.toMapProperties(): MapProperties = MapProperties(
     isMyLocationEnabled = isMyLocationEnabled,
     minZoomPreference = minCameraZoom,
-    maxZoomPreference = maxCameraZoom
+    maxZoomPreference = maxCameraZoom,
+    mapStyleOptions = MapStyleOptions(mapStyle)
 )
 
 internal fun Location.toLatLng(): LatLng = LatLng(lat, lng)

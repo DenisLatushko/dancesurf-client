@@ -8,7 +8,8 @@ data class MapSettings(
     val isCompassButtonEnabled: Boolean = true,
     val isMyLocationButtonEnabled: Boolean = true,
     val minCameraZoom: Float = 0.0f,
-    val maxCameraZoom: Float = 25.0f
+    val maxCameraZoom: Float = 25.0f,
+    val mapStyle: String = ""
 ) {
     companion object {
         val default: MapSettings
