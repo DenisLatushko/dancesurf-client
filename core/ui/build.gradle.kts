@@ -26,6 +26,8 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.android.compose.maps)
+            implementation(libs.androidx.playServices.location)
+            implementation(libs.androidx.playServices.maps)
         }
     }
 }

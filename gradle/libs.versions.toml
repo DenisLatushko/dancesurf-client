@@ -1,6 +1,6 @@
 [versions]
 agp = "8.7.3"
-kotlin = "2.1.0"
+kotlin = "2.1.21-RC"
 kotlinSerialization = "2.0.20"
 kotlinCoroutines = "1.10.1"
 koin = "4.0.0"
@@ -28,6 +28,7 @@ kotest = "5.9.1"
 mokkery = "2.6.1"
 activityKtx = "1.10.0"
 androidxPlayServicesLocation = "21.3.0"
+androidxPlayServicesMps = "19.2.0"
 androidxPlayServicesTasks = "18.2.0"
 kotlinCoroutinesPlayServices = "1.9.0"
 
@@ -63,6 +64,7 @@ compose-gradle = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.
 
 androidx-playServices-location = { module = "com.google.android.gms:play-services-location", version.ref = "androidxPlayServicesLocation" }
 androidx-playServices-tasks = { module = "com.google.android.gms:play-services-tasks", version.ref = "androidxPlayServicesTasks" }
+androidx-playServices-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "androidxPlayServicesMps" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }

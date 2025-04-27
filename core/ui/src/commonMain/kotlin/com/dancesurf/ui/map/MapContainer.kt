@@ -1,6 +1,5 @@
 package com.dancesurf.ui.map
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -12,12 +11,15 @@ import com.dancesurf.system.permissions.Permission.ImpreciseLocation
 import com.dancesurf.system.permissions.Permission.PreciseLocation
 import com.dancesurf.system.permissions.rememberMultiplePermissionsRequester
 import com.dancesurf.ui.map.location.CameraLocation
+import com.dancesurf.ui.map.location.MarkerData
 
 @Composable
 expect fun MapContainer(
     modifier: Modifier = Modifier,
     mapSettings: MapSettings = MapSettings.default,
     initialCameraLocation: CameraLocation,
+    markers: List<MarkerData> = emptyList(),
+    onMarkerClick: (MarkerData) -> Unit = {}
 )
 
 @Composable
@@ -40,9 +42,9 @@ fun MapView(
 
     MapContainer(
         modifier = modifier,
-        initialCameraLocation = initialCameraLocation,
         mapSettings = MapSettings.default.copy(
             isMyLocationEnabled = isLocationPermissionGranted
-        )
+        ),
+        initialCameraLocation = initialCameraLocation
     )
 }

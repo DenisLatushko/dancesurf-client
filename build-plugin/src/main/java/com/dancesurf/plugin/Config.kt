@@ -4,8 +4,8 @@ import org.gradle.api.JavaVersion
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 internal object JavaConfig {
-    val jvmTarget = JvmTarget.JVM_17
-    val javaVersion = JavaVersion.VERSION_17
+    val jvmTarget = JvmTarget.JVM_21
+    val javaVersion = JavaVersion.VERSION_21
 }
 
 internal object AndroidConfig {
